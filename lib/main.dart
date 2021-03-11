@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+//Programa principal
 void main() {
   runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // Este widget é a raiz do aplicativo.
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Cálculo da Área do Triângulo',
       theme: new ThemeData(
+        // Este é o tema do aplicativo.
         primarySwatch: Colors.blue,
         primaryColor: const Color(0xFF2196f3),
         accentColor: const Color(0xFF2196f3),
@@ -30,10 +33,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //Mensagem do resultado
-  String _info = "A área é: ";
+  String mensagem = "A área é: ";
 
   //Chave do formulário
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> chaveFormulario = GlobalKey<FormState>();
 
   //Controler das caixas de texto
   TextEditingController alturaController = TextEditingController();
@@ -60,8 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Builder(
           builder: (context) => Form(
             //Chave do formulário
-            key: _formKey,
+            key: chaveFormulario,
             //Campos do formulário
+            //Coluna dos campos de entrada
             child: new Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
@@ -71,15 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Altura:",
                     style: new TextStyle(
                         fontSize: 12.0,
-                        color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w200,
                         fontFamily: "Roboto"),
                   ),
                   new TextFormField(
                       style: new TextStyle(
                           fontSize: 12.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w200,
                           fontFamily: "Roboto"),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
@@ -97,15 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Base:",
                     style: new TextStyle(
                         fontSize: 12.0,
-                        color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w200,
                         fontFamily: "Roboto"),
                   ),
                   new TextFormField(
                       style: new TextStyle(
                           fontSize: 12.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w200,
                           fontFamily: "Roboto"),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
@@ -120,52 +116,42 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       controller: baseController),
                   new Text(
-                    _info,
+                    mensagem,
                     style: new TextStyle(
                         fontSize: 18.0,
-                        color: const Color(0xFF000000),
-                        fontWeight: FontWeight.w200,
                         fontFamily: "Roboto"),
                   ),
+                  //Linha dos botões
                   new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        new RaisedButton(
+                        new ElevatedButton(
                             key: null,
                             onPressed: calcularClick,
-                            color: const Color(0xFFe0e0e0),
                             child: new Text(
                               "CALCULAR",
                               style: new TextStyle(
                                   fontSize: 12.0,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w200,
                                   fontFamily: "Roboto"),
                             )),
-                        new RaisedButton(
+                        new ElevatedButton(
                             key: null,
                             onPressed: limparClick,
-                            color: const Color(0xFFe0e0e0),
                             child: new Text(
                               "LIMPAR",
                               style: new TextStyle(
                                   fontSize: 12.0,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w200,
                                   fontFamily: "Roboto"),
                             )),
-                        new RaisedButton(
+                        new ElevatedButton(
                             key: null,
                             onPressed: fecharClick,
-                            color: const Color(0xFFe0e0e0),
                             child: new Text(
                               "FECHAR",
                               style: new TextStyle(
                                   fontSize: 12.0,
-                                  color: const Color(0xFF000000),
-                                  fontWeight: FontWeight.w200,
                                   fontFamily: "Roboto"),
                             ))
                       ])
@@ -180,11 +166,13 @@ class _MyHomePageState extends State<MyHomePage> {
    * Evento do botão calcular
    */
   void calcularClick() {
-    if (_formKey.currentState.validate()) {
+    if (chaveFormulario.currentState.validate()) {
       double altura = double.parse(alturaController.text);
       double base = double.parse(baseController.text);
       double area = base * altura / 2.0;
-      _info = "A área é: ${area.toString()}";
+      setState(() {
+        mensagem = "A área é: ${area.toString()}";
+      });
     }
   }
 
@@ -195,8 +183,8 @@ class _MyHomePageState extends State<MyHomePage> {
     alturaController.text = '';
     baseController.text = '';
     setState(() {
-      _info = "A área é: ";
-      _formKey = GlobalKey<FormState>();
+      mensagem = "A área é: ";
+      chaveFormulario = GlobalKey<FormState>();
     });
   }
 
