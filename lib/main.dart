@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 
 //Programa principal
 void main() {
-  runApp(new MyApp());
+  runApp(new MeuAplicativo());
 }
 
-class MyApp extends StatelessWidget {
+class MeuAplicativo extends StatelessWidget {
   // Este widget é a raiz do aplicativo.
   @override
   Widget build(BuildContext context) {
@@ -19,26 +19,27 @@ class MyApp extends StatelessWidget {
         accentColor: const Color(0xFF2196f3),
         canvasColor: const Color(0xFFfafafa),
       ),
-      home: new MyHomePage(),
+      home: new MinhaHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+// Este widget é a página inicial do seu aplicativo.
+class MinhaHomePage extends StatefulWidget {
+  MinhaHomePage({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MinhaHomePageState createState() => new _MinhaHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MinhaHomePageState extends State<MinhaHomePage> {
   //Mensagem do resultado
   String mensagem = "A área é: ";
 
   //Chave do formulário
   GlobalKey<FormState> chaveFormulario = GlobalKey<FormState>();
 
-  //Controler das caixas de texto
+  //Controler das caixas de texto do formulário
   TextEditingController alturaController = TextEditingController();
   TextEditingController baseController = TextEditingController();
 
