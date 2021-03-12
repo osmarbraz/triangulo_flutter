@@ -130,7 +130,9 @@ class _MinhaHomePageState extends State<MinhaHomePage> {
                       children: <Widget>[
                         new ElevatedButton(
                             key: null,
-                            onPressed: calcularClick,
+                            onPressed: () {
+                                calcularClick();
+                            },
                             child: new Text(
                               "CALCULAR",
                               style: new TextStyle(
@@ -139,7 +141,9 @@ class _MinhaHomePageState extends State<MinhaHomePage> {
                             )),
                         new ElevatedButton(
                             key: null,
-                            onPressed: limparClick,
+                            onPressed: () {
+                              limparClick();
+                            },
                             child: new Text(
                               "LIMPAR",
                               style: new TextStyle(
@@ -148,7 +152,9 @@ class _MinhaHomePageState extends State<MinhaHomePage> {
                             )),
                         new ElevatedButton(
                             key: null,
-                            onPressed: fecharClick,
+                            onPressed: () {
+                              fecharClick();
+                            },
                             child: new Text(
                               "FECHAR",
                               style: new TextStyle(
@@ -167,10 +173,13 @@ class _MinhaHomePageState extends State<MinhaHomePage> {
    * Evento do botão calcular
    */
   void calcularClick() {
+    //Chama a validação do formulário
     if (chaveFormulario.currentState.validate()) {
+      //Recupera os dados da tela e converte para double
       double altura = double.parse(alturaController.text);
       double base = double.parse(baseController.text);
       double area = base * altura / 2.0;
+      //Exibe a mensagem
       setState(() {
         mensagem = "A área é: ${area.toString()}";
       });
@@ -181,6 +190,7 @@ class _MinhaHomePageState extends State<MinhaHomePage> {
    * Evento do botão limpar
    */
   void limparClick() {
+    //Limpa as caixas de texto
     alturaController.text = '';
     baseController.text = '';
     setState(() {
