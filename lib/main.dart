@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 
 //Programa principal
 void main() {
-  runApp(new MeuAplicativo());
+  runApp(new MyApp());
 }
 
-class MeuAplicativo extends StatelessWidget {
+class MyApp extends StatelessWidget {
+
   // Este widget é a raiz do aplicativo.
   @override
   Widget build(BuildContext context) {
